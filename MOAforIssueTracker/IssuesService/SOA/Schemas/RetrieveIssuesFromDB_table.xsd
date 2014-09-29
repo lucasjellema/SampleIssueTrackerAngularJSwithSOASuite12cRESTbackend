@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveIssuesFromDB" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveIssuesFromDB" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="OowIssuesCollection" type="OowIssuesCollection"/>
+   <xs:complexType name="OowIssuesCollection">
+      <xs:sequence>
+         <xs:element name="OowIssues" type="OowIssues" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="OowIssues">
+      <xs:sequence>
+         <xs:element name="identifier" type="xs:long" nillable="true"/>
+         <xs:element name="title" type="string120" minOccurs="0" nillable="true"/>
+         <xs:element name="description" type="string2000" minOccurs="0" nillable="true"/>
+         <xs:element name="identifiedBy" type="string50" minOccurs="0" nillable="true"/>
+         <xs:element name="status" type="string20" minOccurs="0" nillable="true"/>
+         <xs:element name="creationDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="comments" type="string1000" minOccurs="0" nillable="true"/>
+         <xs:element name="lastUpdate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="RetrieveIssuesFromDBSelectInputParameters" type="RetrieveIssuesFromDBSelect"/>
+   <xs:complexType name="RetrieveIssuesFromDBSelect">
+      <xs:sequence/>
+   </xs:complexType>
+   <xs:simpleType name="string120">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="120"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string2000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string50">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string20">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="20"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string1000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1000"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

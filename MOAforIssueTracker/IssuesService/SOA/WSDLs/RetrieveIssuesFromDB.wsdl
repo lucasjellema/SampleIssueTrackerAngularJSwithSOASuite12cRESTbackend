@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="RetrieveIssuesFromDB"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/MOAforIssueTracker/IssuesService/RetrieveIssuesFromDB"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/MOAforIssueTracker/IssuesService/RetrieveIssuesFromDB"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveIssuesFromDB"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="RetrieveIssuesFromDB_plt" >
+    <plt:role name="RetrieveIssuesFromDB_role" >
+      <plt:portType name="tns:RetrieveIssuesFromDB_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveIssuesFromDB" schemaLocation="../Schemas/RetrieveIssuesFromDB_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="RetrieveIssuesFromDBSelect_inputParameters">
+        <wsdl:part name="RetrieveIssuesFromDBSelect_inputParameters" element="top:RetrieveIssuesFromDBSelectInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="OowIssuesCollection_msg">
+        <wsdl:part name="OowIssuesCollection" element="top:OowIssuesCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="RetrieveIssuesFromDB_ptt">
+        <wsdl:operation name="RetrieveIssuesFromDBSelect">
+            <wsdl:input message="tns:RetrieveIssuesFromDBSelect_inputParameters"/>
+            <wsdl:output message="tns:OowIssuesCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

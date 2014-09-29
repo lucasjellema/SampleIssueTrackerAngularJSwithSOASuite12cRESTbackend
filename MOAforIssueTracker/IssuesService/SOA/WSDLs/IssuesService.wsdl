@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="nl.amis/workflow/IssuesService" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="nl.amis/workflow/IssuesService" xmlns:wfw="nl.amis/workflow"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="nl.amis/workflow" schemaLocation="../Schemas/Issues.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="RetrieveIssuesRequestMessage">
+        <part name="in" element="wfw:Request"/>
+    </message>
+    <message name="RetrieveIssuesResponseMessage">
+        <part name="return" element="wfw:IssueList"/>
+    </message>
+    <portType name="IssuesService">
+        <operation name="RetrieveIssues">
+            <input message="tns:RetrieveIssuesRequestMessage"/>
+            <output message="tns:RetrieveIssuesResponseMessage"/>
+        </operation>
+    </portType>
+</definitions>

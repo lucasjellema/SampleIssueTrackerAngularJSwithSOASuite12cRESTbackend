@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/MOAforIssuesTrackerApp/TrackerAppIssuesService/IssueTrackerAppRestService" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="IssueTrackerAppRestService">RestService for Issue Tracker</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/IssueTrackerAppRestService_retrieveIssues_response" schemaLocation="nxsd_Issues_json.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/issues">
+         <method name="GET" soa:wsdlOperation="retrieveIssues">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:issues" xmlns:cns="http://TargetNamespace.com/IssueTrackerAppRestService_retrieveIssues_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

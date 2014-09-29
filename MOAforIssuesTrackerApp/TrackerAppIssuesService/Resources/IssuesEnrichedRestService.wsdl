@@ -1,0 +1,49 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="IssuesEnrichedRestService"
+     targetNamespace="http://xmlns.oracle.com/MOAforIssuesTrackerApp/TrackerAppIssuesService/IssuesEnrichedRestService"
+     xmlns:tns="http://xmlns.oracle.com/MOAforIssuesTrackerApp/TrackerAppIssuesService/IssuesEnrichedRestService"
+     xmlns:inp1="http://TargetNamespace.com/IssuesRestService_Operation1_request"
+     xmlns:inp2="http://TargetNamespace.com/IssueTrackerAppRestService_retrieveIssues_response"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <plnk:partnerLinkType name="IssuesEnrichedRestService">
+        <plnk:role name="IssuesEnrichedRestServiceProvider" portType="tns:IssuesEnrichedRestService_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/IssuesRestService_Operation1_request"
+                 schemaLocation="nxsd_issues_request.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/IssueTrackerAppRestService_retrieveIssues_response"
+                 schemaLocation="nxsd_Issues_json.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="RetrieveIssues_inputMessage">
+        <wsdl:part name="request" element="inp1:Root-Element"/>
+    </wsdl:message>
+    <wsdl:message name="RetrieveIssues_outputMessage">
+        <wsdl:part name="reply" element="inp2:issues"/>
+    </wsdl:message>
+    <wsdl:portType name="IssuesEnrichedRestService_ptt">
+        <wsdl:operation name="RetrieveIssues">
+            <wsdl:input message="tns:RetrieveIssues_inputMessage"/>
+            <wsdl:output message="tns:RetrieveIssues_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="IssuesEnrichedRestService_ptt-binding" type="tns:IssuesEnrichedRestService_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RetrieveIssues">
+            <soap:operation soapAction="RetrieveIssues"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

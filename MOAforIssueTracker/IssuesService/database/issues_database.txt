@@ -1,0 +1,22 @@
+create table oow_issues
+( identifier     number(10)
+, title          varchar2(120)
+, description    varchar2(2000)
+, identified_by  varchar2(50)
+, status         varchar2(3) -- 
+, creation_date  date
+, comments       varchar2(1000)
+, last_update    date
+);
+
+
+insert into oow_issues
+( identifier, title, description, identified_by, status, creation_date)
+values
+(231,'Pocket Money should be raised','Boys my age have considerably more pocket moeny than I do. Something should be done about that.','Tobias Jellema','OPN', to_date('01-09-2014','DD-MM-YYYY' ));
+
+insert into oow_issues
+( identifier, title, description, identified_by, status, creation_date)
+values
+(511,'Chapter 17 through 21 are (over)due','According to the schedule we agreed upon, you should have submitted the first version of chapters 17 through 21 before today. This has to be rectified ASAP.','Your Editor','OPN', to_date('15-09-2014','DD-MM-YYYY' ));
+

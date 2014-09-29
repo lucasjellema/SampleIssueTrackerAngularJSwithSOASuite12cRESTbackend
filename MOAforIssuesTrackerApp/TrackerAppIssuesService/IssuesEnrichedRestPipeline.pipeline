@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/logging/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="TrackerAppIssuesService/Resources/IssuesEnrichedRestService"/>
+            <con:binding>
+                <con:name>IssuesEnrichedRestService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/MOAforIssuesTrackerApp/TrackerAppIssuesService/IssuesEnrichedRestService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:flow>
+            <con:route-node name="RouteNode1" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                <con:context>
+                    <con2:userNsDecl prefix="iss1" namespace="http://TargetNamespace.com/IssueTrackerAppRestService_retrieveIssues_response"/>
+                    <con2:userNsDecl prefix="iss" namespace="http://TargetNamespace.com/IssuesRestService_Operation1_request"/>
+                    <con2:userNsDecl prefix="wfw" namespace="nl.amis/workflow"/>
+                </con:context>
+                <con:actions>
+                    <con1:route>
+                        <con2:id>_ActionId-N3f57c7ff.edf95e.0.148bc80d4f0.N8000</con2:id>
+                        <con1:service ref="TrackerAppIssuesService/IssuesServicePipeline" xsi:type="ref:PipelineRef" xmlns:ref="http://www.bea.com/wli/sb/pipeline/config"/>
+                        <con1:operation>RetrieveIssues</con1:operation>
+                        <con1:outboundTransform>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7ff5</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$body</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>sort</con3:key>
+                                    <con3:varName>body</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$body//*:sort/text()</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                                <con3:labels>
+                                    <con3:key>direction</con3:key>
+                                    <con3:varName>body</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$body//*:direction/text()</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                            <con3:assign varName="sort" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57c7ff.edf95e.0.148bc80d4f0.N7ffd</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>&lt;sort>{$body//*:sort/text()}&lt;/sort></con2:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7fe8</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$sort</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>sort</con3:key>
+                                    <con3:varName>sort</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$sort</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                            <con3:assign varName="direction" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7ff2</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>&lt;direction>{$body//*:direction/text()}&lt;/direction></con2:xqueryText>
+                                </con3:expr>
+                            </con3:assign>
+                        </con1:outboundTransform>
+                        <con1:responseTransform>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7feb</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$sort/.</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>sort2</con3:key>
+                                    <con3:varName>sort</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$sort/text()</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7fe4</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$sort</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>sort2a</con3:key>
+                                    <con3:varName>sort</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$sort</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.N4042254d.0.148bc95699a.N7fe1</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$body</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>bodyVoorXForm</con3:key>
+                                    <con3:varName>body</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$body</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                            <con3:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+                                <con2:id>_ActionId-N3f57c7ff.edf95e.0.148bc80d4f0.N7ff3</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryTransform>
+                                        <con2:resource ref="TrackerAppIssuesService/Issues_to_IssuesJSON4IssuesTrackerSorted"/>
+                                        <con2:param name="canonicalIssues">
+                                            <con2:path>$body/wfw:IssueList</con2:path>
+                                        </con2:param>
+                                        <con2:param name="sortBy">
+                                            <con2:path>$sort/text()</con2:path>
+                                        </con2:param>
+                                        <con2:param name="direction">
+                                            <con2:path>$direction/text()</con2:path>
+                                        </con2:param>
+                                    </con2:xqueryTransform>
+                                </con3:expr>
+                            </con3:replace>
+                            <con3:report xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+                                <con2:id>_ActionId-N3f57c7ff.edf95e.0.148bc80d4f0.N7ff6</con2:id>
+                                <con3:expr>
+                                    <con2:xqueryText>$body</con2:xqueryText>
+                                </con3:expr>
+                                <con3:labels>
+                                    <con3:key>sort3</con3:key>
+                                    <con3:varName>sort</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$sort/text()</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                                <con3:labels>
+                                    <con3:key>sort4</con3:key>
+                                    <con3:varName>sort</con3:varName>
+                                    <con3:value>
+                                        <con2:xpathText>$sort/.</con2:xpathText>
+                                    </con3:value>
+                                </con3:labels>
+                            </con3:report>
+                        </con1:responseTransform>
+                    </con1:route>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

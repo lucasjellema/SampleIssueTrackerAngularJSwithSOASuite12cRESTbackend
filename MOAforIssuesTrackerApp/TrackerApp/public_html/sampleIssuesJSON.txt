@@ -1,0 +1,53 @@
+[
+  {
+    "url": "https://api.github.com/repos/angular/angular.js/issues/9299",
+    "number": 9299,
+    "title": "perf(jqLite): use index instead of array.shift()",
+    "user": {
+      "login": "JensGabe",
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+ "comments": 4,
+    "created_at": "2014-09-26T23:50:10Z",
+    "updated_at": "2014-09-27T01:21:27Z",
+    "body": "it is much faster: http://jsperf.com/array-shift-vs-index"
+  },
+  {
+    "url": "https://api.github.com/repos/angular/angular.js/issues/9297",
+    "number": 9297,
+    "title": "docs: Grammar correction in docs",
+    "user": {
+      "login": "mvpspl619",
+    },
+    "labels": [
+      {
+        "url": "https://api.github.com/repos/angular/angular.js/labels/cla%3A+no",
+        "name": "cla: no",
+        "color": "f7c6c7"
+      }
+    ],
+    "state": "open",
+     "comments": 4,
+    "created_at": "2014-09-26T23:50:10Z",
+    "updated_at": "2014-09-27T01:21:27Z","body": "\"an $http\" -> \"a $http\""
+  },
+  {
+    "url": "https://api.github.com/repos/angular/angular.js/issues/9296",
+    "number": 9296,
+    "title": "ngModelController $formatters does not work",
+    "user": {
+      "login": "jmnsf",
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+ "comments": 4,
+    "created_at": "2014-09-26T23:50:10Z",
+    "updated_at": "2014-09-27T01:21:27Z",
+    "body": "I'm trying to use $formatters and $parsers for displaying a date one way and storing it in the model in another (JSON). The $parsers work fine, any date that is set into the view is transformed correctly, but the return from the $formatters is ignored, which means the date ends up displayed as JSON in the view.\r\n\r\nI have a [fiddle](http://jsfiddle.net/tc5y6u5a/17/) to illustrate the issue. Setting the view doesn't even issue a call to $formatters (which is expected) and setting the model does call it, but the return is ignored.\r\n\r\nBefore you blame momentjs, try returning anything in the formatter. It won't go into the view.\r\n\r\nI'm using version 1.2.25"
+  },
+  ]
